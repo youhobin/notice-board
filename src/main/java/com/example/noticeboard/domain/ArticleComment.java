@@ -7,12 +7,16 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
-public class Article {
+public class ArticleComment {
 
     @Id @GeneratedValue
-    @Column(name = "article_id")
+    @Column(name = "article_comment_id")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "article_id")
+    private Article article;
+    
     private String title;
     private String content;
     private String hashtag;
