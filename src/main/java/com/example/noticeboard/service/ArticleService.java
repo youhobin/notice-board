@@ -2,6 +2,7 @@ package com.example.noticeboard.service;
 
 import com.example.noticeboard.domain.Article;
 import com.example.noticeboard.repository.ArticleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,10 +11,10 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class ArticleService {
 
-    @Autowired
-    ArticleRepository articleRepository;
+    private final ArticleRepository articleRepository;
 
     @Transactional
     public Long saveArticle(Article article) {
