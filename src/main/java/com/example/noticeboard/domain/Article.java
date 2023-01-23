@@ -3,7 +3,6 @@ package com.example.noticeboard.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -30,6 +29,11 @@ public class Article extends BaseTimeEntity {
         return new Article(title, content, hashtag);
     }
 
+    public void updateArticle(String updateTitle, String updateContent) {
+        this.title = updateTitle;
+        this.content = updateContent;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,4 +46,5 @@ public class Article extends BaseTimeEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }
