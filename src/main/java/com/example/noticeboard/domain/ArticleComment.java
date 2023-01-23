@@ -42,4 +42,8 @@ public class ArticleComment extends BaseTimeEntity{
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public void updateContent(String updateContent) {
+        this.content = updateContent;
+    }
 }

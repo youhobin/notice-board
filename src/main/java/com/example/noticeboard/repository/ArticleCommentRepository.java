@@ -24,4 +24,7 @@ public class ArticleCommentRepository {
             .getResultList();
     }
 
+    public ArticleComment findOne(Long id) {
+        return em.find(ArticleComment.class, id);
+    }
 }
