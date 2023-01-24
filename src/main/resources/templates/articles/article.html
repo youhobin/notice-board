@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+    <main>
+        <header>
+            <p1 th:text="title">title</p1>
+        </header>
+
+        <p th:text="content">
+            content
+        </p>
+
+        <div>
+            <form>
+                <label for="articleComment" hidden>댓글</label>
+                <textarea id="articleComment" placeholder="댓글 쓰기" row="3"></textarea>
+                <button type="submit">댓글 입력</button>
+            </form>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+    </main>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>
