@@ -1,6 +1,8 @@
 package com.example.noticeboard.controller;
 
 import com.example.noticeboard.domain.Article;
+import com.example.noticeboard.domain.ArticleComment;
+import com.example.noticeboard.service.ArticleCommentService;
 import com.example.noticeboard.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,7 @@ public class ArticleController {
         return "articles/articleList";
     }
 
+    //게시글에 글과 댓글 둘다 나와야하므로, 글의 id로 댓글을 찾는 로직 구현해야할듯.
     @GetMapping("/articles/{articleId}")
     public String article(@PathVariable("articleId") Long articleId, Model model) {
         Article article = articleService.findOne(articleId);
