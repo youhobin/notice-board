@@ -33,8 +33,7 @@ public class ArticleController {
     @GetMapping("/articles/{articleId}")
     public String article(@PathVariable("articleId") Long articleId, Model model) {
         Article article = articleService.findOne(articleId);
-        model.addAttribute("title", article.getTitle());
-        model.addAttribute("content", article.getContent());
+        model.addAttribute("article", article);
 
         return "articles/article";
     }
@@ -46,9 +45,9 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/new")
-    public String createArticle(@ModelAttribute ArticleForm articleForm) {
+    public String createArticle(@ModelAttribute ArticleForm form) {
 
-        Article article = Article.of(articleForm.getTitle(), articleForm.getContent(), articleForm.getHashtag());
+        Article article = Article.of(form.getTitle(), form.getContent(), form.getHashtag());
         articleService.saveArticle(article);
 
         return "redirect:/";
