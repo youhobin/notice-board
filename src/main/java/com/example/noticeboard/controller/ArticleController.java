@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class ArticleController {
-    
+
     private final ArticleService articleService;
 
     @GetMapping("/articles")
@@ -45,4 +45,12 @@ public class ArticleController {
         return "articles/createArticleForm";
     }
 
+    @PostMapping("/articles/new")
+    public String createArticle(@ModelAttribute ArticleForm articleForm) {
+
+        Article article = Article.of(articleForm.getTitle(), articleForm.getContent(), articleForm.getHashtag());
+        articleService.saveArticle(article);
+
+        return "redirect:/";
+    }
 }
