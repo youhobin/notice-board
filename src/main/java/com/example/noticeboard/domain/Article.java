@@ -17,6 +17,10 @@ public class Article extends BaseTimeEntity {
     private String content;
     private String hashtag;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     protected Article() {}
 
     private Article(String title, String content, String hashtag) {
