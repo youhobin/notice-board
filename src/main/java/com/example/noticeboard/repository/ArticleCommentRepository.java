@@ -24,6 +24,13 @@ public class ArticleCommentRepository {
             .getResultList();
     }
 
+    public List<ArticleComment> findAllWithArticle() {
+        return em.createQuery(
+            "select distinct ac from ArticleComment ac" +
+                    " join fetch ac.article a", ArticleComment.class)
+            .getResultList();
+    }
+
     public ArticleComment findOne(Long id) {
         return em.find(ArticleComment.class, id);
     }

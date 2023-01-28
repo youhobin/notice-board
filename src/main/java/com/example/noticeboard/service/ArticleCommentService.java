@@ -1,7 +1,9 @@
 package com.example.noticeboard.service;
 
+import com.example.noticeboard.domain.Article;
 import com.example.noticeboard.domain.ArticleComment;
 import com.example.noticeboard.repository.ArticleCommentRepository;
+import com.example.noticeboard.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +16,12 @@ import java.util.List;
 public class ArticleCommentService {
 
     private final ArticleCommentRepository articleCommentRepository;
+    private final ArticleRepository articleRepository;
 
     @Transactional
-    public Long saveArticleComment(ArticleComment articleComment) {
+    public Long saveArticleComment(Long articleId, String content) {
+        Article article = articleRepository.findOne(articleId);
+        ArticleComment articleComment = ArticleComment.of(article, content);
         return articleCommentRepository.save(articleComment);
     }
 
