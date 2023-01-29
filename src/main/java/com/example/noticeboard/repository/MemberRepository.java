@@ -23,11 +23,11 @@ public class MemberRepository {
         return em.find(Member.class, memberId);
     }
 
-    public Optional<Member> findByLoginId(String loginId) {
-        return findAll().stream()
-                .filter(m -> m.getLoginId().equals(loginId))
-                .findFirst();
-    }
+//    public Optional<Member> findByLoginId(String loginId) {
+//        return findAll().stream()
+//                .filter(m -> m.getLoginId().equals(loginId))
+//                .findFirst();
+//    }
 
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class)
@@ -35,4 +35,9 @@ public class MemberRepository {
     }
 
 
+    public Optional<Member> findByUsername(String username) {
+        return findAll().stream()
+            .filter(m -> m.getUsername().equals(username))
+            .findFirst();
+    }
 }

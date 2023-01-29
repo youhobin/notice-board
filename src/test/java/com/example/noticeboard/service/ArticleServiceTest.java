@@ -2,6 +2,7 @@ package com.example.noticeboard.service;
 
 import com.example.noticeboard.domain.Article;
 import com.example.noticeboard.repository.ArticleRepository;
+import com.example.noticeboard.service.dto.article.UpdateArticleDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

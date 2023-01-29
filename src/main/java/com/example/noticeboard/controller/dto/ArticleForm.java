@@ -1,4 +1,4 @@
-package com.example.noticeboard.controller;
+package com.example.noticeboard.controller.dto;
 
 import lombok.Getter;
 import lombok.Setter;

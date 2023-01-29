@@ -1,12 +1,13 @@
 package com.example.noticeboard.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@AllArgsConstructor
+@Builder
 @Getter
 @Entity
 public class Member {
@@ -15,20 +16,21 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    private String loginId;
-    private String name;
+    private String username;
+
     private String password;
+
+    private String email;
+
+    private String nickname;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     protected Member() {
     }
 
-    private Member(String loginId, String name, String password) {
-        this.loginId = loginId;
-        this.name = name;
-        this.password = password;
-    }
-
-    public static Member of(String loginId, String name, String password) {
-        return new Member(loginId, name, password);
+    public void mapToHashPassword(String hashPassword) {
+        this.password = hashPassword;
     }
 }

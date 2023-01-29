@@ -1,5 +1,6 @@
 package com.example.noticeboard.controller;
 
+import com.example.noticeboard.controller.dto.ArticleForm;
 import com.example.noticeboard.domain.Article;
 import com.example.noticeboard.domain.ArticleComment;
 import com.example.noticeboard.service.ArticleCommentService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ import java.util.List;
 public class ArticleController {
 
     private final ArticleService articleService;
+    private final ArticleCommentService articleCommentService;
 
     @GetMapping("/articles")
     public String articleList(Model model) {
@@ -51,5 +54,22 @@ public class ArticleController {
         articleService.saveArticle(article);
 
         return "redirect:/";
+    }
+
+    @PostMapping("/articles/{articleId}/articleComment/new")
+    public String createArticleComment(
+        @PathVariable("articleId") Long articleId,
+        @ModelAttribute ArticleCommentForm articleCommentForm,
+        Model model,
+        RedirectAttributes redirectAttributes
+    ) {
+        Article article = articleService.findOne(articleId);
+        model.addAttribute("article", article);
+
+        ArticleComment articleComment = ArticleComment.of(article, articleCommentForm.getContent());
+        articleCommentService.saveArticleComment(articleComment);
+        redirectAttributes.addAttribute("articleId", articleId);
+
+        return "redirect:/articles/{articleId}";
     }
 }

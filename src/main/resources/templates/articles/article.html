@@ -17,9 +17,9 @@
         </div>
 
         <div>
-            <form>
-                <label for="articleComment" hidden>댓글</label>
-                <textarea id="articleComment" placeholder="댓글 쓰기" row="3"></textarea>
+            <form th:action="@{/articles/{articleId}/articleComment/new(articleId=${article.id})}" th:object="${articleCommentForm}" method="post">
+                <label th:for="content" hidden>댓글</label>
+                <textarea th:field="*{content}" placeholder="댓글 쓰기" row="3"></textarea>
                 <button type="submit">댓글 입력</button>
             </form>
         </div>

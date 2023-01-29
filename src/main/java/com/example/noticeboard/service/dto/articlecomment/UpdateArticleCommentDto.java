@@ -1,4 +1,4 @@
-package com.example.noticeboard.service;
+package com.example.noticeboard.service.dto.articlecomment;
 
 import lombok.Getter;
 
